@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.service.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.service.name }}
+    spec:
+      imagePullSecrets:
+      - name: docker-registry-logicmonitor-net
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.tomcatPort }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.tomcatPort }}
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+          failureThreshold: 8
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.tomcatPort }}
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+          failureThreshold: 8
+          periodSeconds: 15

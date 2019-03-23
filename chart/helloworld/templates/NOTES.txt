@@ -1,0 +1,2 @@
+1. run the helm with the command below
+helm upgrade --install --tiller-namespace="kube-system" helloworld chart/helloworld/

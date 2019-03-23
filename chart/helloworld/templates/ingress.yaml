@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$request_uri"
+    nginx.ingress.kubernetes.io/upstream-hash-by-subset: "false"
+  name: helloworld-ingress
+  namespace: default
+spec:
+  backend:
+    serviceName: helloworld
+    servicePort: 80

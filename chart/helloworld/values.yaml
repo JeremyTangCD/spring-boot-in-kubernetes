@@ -1,0 +1,9 @@
+replicaCount: 3
+image:
+  repository: jeremy/springboot-helloworld
+  tag: latest
+  pullPolicy: Never
+service:
+  name: helloworld
+  type: ClusterIP
+  tomcatPort: 8080
