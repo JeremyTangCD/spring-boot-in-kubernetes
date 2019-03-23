@@ -27,7 +27,7 @@ helm upgrade --install --tiller-namespace="kube-system" helloworld chart/hellowo
 ```
 5. Use the request below to check whether the servers are avaliable
 ```
-curl -G "http://localhost?a=2
+curl -G "http://localhost?a=2"
 ```
 6. The result below means the deployment is successful.
 ```
