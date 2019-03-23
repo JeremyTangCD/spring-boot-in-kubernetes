@@ -1,4 +1,4 @@
-# spring-boot-in-kubernetes
+# Spring-Boot-In-Kubernetes
 This project construct several spring boot servers in kubernetes.
 
 The nginx ingress is used as the load balancer.
